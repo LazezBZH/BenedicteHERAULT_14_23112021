@@ -1,33 +1,26 @@
 .banner {
-  width: 100%;
+  width: 80%;
   height: 18vh;
-  position: relative;
+
+  display: flex;
+  justify-content: space-evenly;
+  margin: auto;
 }
 .banner img {
   height: 150%;
-  position: absolute;
-  right: 10%;
+  position: relative;
+  bottom: 8rem;
 }
 .banner h2 {
-  max-width: 40%;
-  position: absolute;
-  top: 2rem;
-  left: 25%;
+  margin-right: 5rem;
 }
 
-@media (max-width: 830px) {
+@media (max-width: 900px) {
   .banner img {
-    position: absolute;
-    right: 4%;
-  }
-  .banner h2 {
-    position: absolute;
-    top: 2rem;
-    left: 4%;
+    height: 120%;
+    position: relative;
+    bottom: 5rem;
   }
 }
-@media (max-width: 1300px) {
-  .banner img {
-    height: 100%;
-  }
+@media (max-width: 1200px) {
 }
