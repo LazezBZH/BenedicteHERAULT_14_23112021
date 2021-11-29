@@ -35,3 +35,43 @@ Form {
   color: white;
   border-radius: 0.5rem;
 }
+.react-datepicker-wrapper input {
+  width: 100%;
+}
+
+.react-datepicker__input-container button::after {
+  background-color: #444444;
+}
+.react-datepicker__current-month,
+.react-datepicker {
+  color: #444444;
+}
+.react-datepicker {
+  background-color: #99aa55;
+}
+.react-datepicker__day--keyboard-selected,
+.react-datepicker__month-text--keyboard-selected,
+.react-datepicker__quarter-text--keyboard-selected,
+.react-datepicker__year-text--keyboard-selected,
+.react-datepicker__day--selected,
+.react-datepicker__day--in-selecting-range,
+.react-datepicker__day--in-range,
+.react-datepicker__month-text--selected,
+.react-datepicker__month-text--in-selecting-range,
+.react-datepicker__month-text--in-range,
+.react-datepicker__quarter-text--selected,
+.react-datepicker__quarter-text--in-selecting-range,
+.react-datepicker__quarter-text--in-range,
+.react-datepicker__year-text--selected,
+.react-datepicker__year-text--in-selecting-range,
+.react-datepicker__year-text--in-range {
+  background-color: #b8c976;
+}
+.react-datepicker__day--today,
+.react-datepicker__month-text--today,
+.react-datepicker__quarter-text--today,
+.react-datepicker__year-text--today {
+  font-weight: bolder;
+  color: #b8c976;
+  background-color: #44444456;
+}

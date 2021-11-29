@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { add } from "../../../Redux/Slice/employeeSlice";
+//import MyDatepicker from "../Datepicker/Datepicker";
+
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import "./Form.css";
 
 const AddEmployeeForm = () => {
@@ -28,18 +32,21 @@ const AddEmployeeForm = () => {
 
   const [firstName, setFirstName] = useState(firstNameToAdd);
   const [lastName, setLastName] = useState(lastNameToAdd);
-  const [birthDateObj, setBirthDate] = useState(birthDateToAdd);
-  const [startDateObj, setStartDate] = useState(startDateToAdd);
+  const [birthDate, setBirthDate] = useState(birthDateToAdd);
+  const [startDate, setStartDate] = useState(startDateToAdd);
   const [street, setStreet] = useState(streetToAdd);
   const [city, setCity] = useState(cityToAdd);
   const [etat, setEtat] = useState(etatToAdd);
   const [zipCode, setZipCode] = useState(zipCodeToAdd);
   const [department, setDepartement] = useState(departmentToAdd);
 
+  const [valueBirthDate, setValueBirthDate] = useState(null);
+  const [valueStartDate, setValueStartDate] = useState(null);
+
   const dispatch = useDispatch();
 
-  const birthDate = JSON.stringify(birthDateObj);
-  const startDate = JSON.stringify(startDateObj);
+  //const birthDate = JSON.stringify(birthDateObj);
+  //const startDate = JSON.stringify(startDateObj);
 
   const employee = {
     firstName,
@@ -56,10 +63,12 @@ const AddEmployeeForm = () => {
   const handleSubmit = () => {
     dispatch(add(employee));
   };
+
   console.log(employee);
-  /*if (message === 200) {
-    return <div>Employee Created</div>;
-  }*/
+  console.log("BIRTH", birthDate);
+  console.log("START", startDate);
+  //console.log("brithobj", birthDateObj);
+  //console.log("startobj", valueStartDate);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -85,28 +94,48 @@ const AddEmployeeForm = () => {
           }}
         />
       </label>
-      <label className="label" htmlFor="birthdate">
+      <label htmlFor="birthdate" className={["label", "label-birth"].join(" ")}>
         Date of Birth:
-        <input
-          type="text"
-          name="birthdate"
-          value={birthDateToAdd}
-          onChange={(e) => {
-            setBirthDate(e.target.value);
+        <DatePicker
+          selected={valueBirthDate}
+          onChange={(date) => {
+            setValueBirthDate(date);
+            setBirthDate(date);
           }}
+          dateFormat="dd/MM/yyyy"
+          isClearable
+          placeholderText="Select a date of birth"
+          fixedHeight
+          peekNextMonth
+          showMonthDropdown
+          useShortMonthInDropdown
+          showYearDropdown
+          dropdownMode="select"
+          todayButton="Today"
         />
       </label>
-      <label className="label" htmlFor="startdate">
+      <label htmlFor="startdate" className={["label", "label-start"].join(" ")}>
         Start Date:
-        <input
-          type="text"
-          name="startdate"
-          value={startDateToAdd}
-          onChange={(e) => {
-            setStartDate(e.target.value);
+        <DatePicker
+          selected={valueStartDate}
+          onChange={(date) => {
+            setValueStartDate(date);
+            setStartDate(date);
           }}
+          dateFormat="dd/MM/yyyy"
+          isClearable
+          placeholderText="Select a start date"
+          fixedHeight
+          openToDate={new Date("1993/09/28")}
+          peekNextMonth
+          showMonthDropdown
+          useShortMonthInDropdown
+          showYearDropdown
+          dropdownMode="select"
+          todayButton="Today"
         />
       </label>
+
       <div className="adress">
         <label className="label" htmlFor="street">
           Street:

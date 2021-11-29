@@ -14,6 +14,7 @@ const initialState = {
   },
 };
 let employees = [];
+
 employees = JSON.parse(localStorage.getItem("employees"));
 
 const employeeSlice = createSlice({

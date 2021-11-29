@@ -11,15 +11,15 @@ export default function Employees() {
           {employees.map((employee, index) => (
             <tbody key={index}>
               <tr>
-                <td key={employee.firstName}>{employee.firstName}</td>
-                <td key={employee.lastName}>{employee.lastName}</td>
-                <td key={employee.startDate}>{employee.startDate}</td>
-                <td key={employee.department}>{employee.department}</td>
-                <td key={employee.birthDate}>{employee.birthDate}</td>
-                <td key={employee.street}>{employee.street}</td>
-                <td key={employee.city}>{employee.city}</td>
-                <td key={employee.etat}>{employee.etat}</td>
-                <td key={employee.zipCode}>{employee.zipCode}</td>
+                <td>{employee.firstName}</td>
+                <td>{employee.lastName}</td>
+                <td>{employee.startDate}</td>
+                <td>{employee.department}</td>
+                <td>{employee.birthDate}</td>
+                <td>{employee.street}</td>
+                <td>{employee.city}</td>
+                <td>{employee.etat}</td>
+                <td>{employee.zipCode}</td>
               </tr>
             </tbody>
           ))}

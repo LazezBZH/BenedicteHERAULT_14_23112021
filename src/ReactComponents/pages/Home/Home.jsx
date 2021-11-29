@@ -10,7 +10,9 @@ export default function Home() {
       <div className="all-form">
         <div className="form-header">
           <div className="form-name">HRnet</div>
-          <Link to="/employees">View Current Employees</Link>
+          <Link to="/employees" onClick="addFirstEmployees()">
+            View Current Employees
+          </Link>
           <div className="form-description">Create Employee</div>
         </div>
         <Form />
