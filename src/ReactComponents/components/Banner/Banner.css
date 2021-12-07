@@ -7,7 +7,7 @@
   margin: auto;
 }
 .banner img {
-  height: 150%;
+  height: 18rem;
   position: relative;
   bottom: 8rem;
 }
@@ -17,10 +17,16 @@
 
 @media (max-width: 900px) {
   .banner img {
-    height: 120%;
+    height: 20rem;
     position: relative;
     bottom: 5rem;
   }
 }
-@media (max-width: 1200px) {
+@media (max-width: 600px) {
+  .banner {
+    display: block;
+  }
+  .banner img {
+    position: inherit;
+  }
 }

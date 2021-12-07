@@ -3,6 +3,9 @@ import Form from "../../components/Form/Form";
 import { Link } from "react-router-dom";
 import "./Home.css";
 
+/*function addFirstEmployees() {
+  localStorage.clear();
+}*/
 export default function Home() {
   return (
     <div className="home">
@@ -10,10 +13,9 @@ export default function Home() {
       <div className="all-form">
         <div className="form-header">
           <div className="form-name">HRnet</div>
-          <Link to="/employees" onClick="addFirstEmployees()">
-            View Current Employees
-          </Link>
-          <div className="form-description">Create Employee</div>
+          <div className="form-link">
+            <Link to="/employees">View Current Employees &#x21AA;</Link>
+          </div>
         </div>
         <Form />
       </div>

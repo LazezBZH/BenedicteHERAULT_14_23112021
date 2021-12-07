@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { add } from "../../../Redux/Slice/employeeSlice";
-//import MyDatepicker from "../Datepicker/Datepicker";
+import DatePicker from "../DatePicker/MyDatePicker";
 
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import dataStates from "../Dropdown/DropdownsData/dataStates";
+import dataDepartments from "../Dropdown/DropdownsData/dataDepartments";
+
 import "./Form.css";
+import Dropdown from "../Dropdown/Dropdowns";
+import Input from "../Input/Input";
 
-const AddEmployeeForm = () => {
+const Form = () => {
   const [
     firstNameToAdd,
     lastNameToAdd,
@@ -38,15 +41,24 @@ const AddEmployeeForm = () => {
   const [city, setCity] = useState(cityToAdd);
   const [etat, setEtat] = useState(etatToAdd);
   const [zipCode, setZipCode] = useState(zipCodeToAdd);
-  const [department, setDepartement] = useState(departmentToAdd);
+  const [department, setDepartment] = useState(departmentToAdd);
 
   const [valueBirthDate, setValueBirthDate] = useState(null);
   const [valueStartDate, setValueStartDate] = useState(null);
 
   const dispatch = useDispatch();
 
-  //const birthDate = JSON.stringify(birthDateObj);
-  //const startDate = JSON.stringify(startDateObj);
+  const [successMessageIsOpen, setSuccessMessageIsOpen] = useState(false);
+  const closeSuccessMessage = () => {
+    setSuccessMessageIsOpen(false);
+  };
+
+  /*const dateForTable = (date) => {
+    const month = date.getUTCMonth() + 1;
+    const day = date.getUTCDate();
+    const year = date.getUTCFullYear();
+    return `${month}/${day}/${year}`;
+  };*/
 
   const employee = {
     firstName,
@@ -60,142 +72,103 @@ const AddEmployeeForm = () => {
     department,
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     dispatch(add(employee));
+    setSuccessMessageIsOpen(true);
+    e.target.reset();
+    setValueBirthDate(null);
+    setValueStartDate(null);
   };
 
   console.log(employee);
   console.log("BIRTH", birthDate);
   console.log("START", startDate);
-  //console.log("brithobj", birthDateObj);
-  //console.log("startobj", valueStartDate);
+  console.log("ETAT", etat);
+
+  const birthDateForTable = JSON.stringify(birthDate);
+  console.log(birthDateForTable);
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label className="label" htmlFor="firstname">
-        <p>First Name:</p>
-        <input
-          type="text"
+    <>
+      <form onSubmit={handleSubmit}>
+        <div className="form-description">Create Employee</div>
+        <Input
           name="firstname"
+          labelTitle="First Name:"
           value={firstNameToAdd}
-          onChange={(e) => {
-            setFirstName(e.target.value);
-          }}
+          setInput={setFirstName}
         />
-      </label>
-      <label className="label" htmlFor="lastname">
-        <p>Last Name:</p>
-        <input
-          type="text"
+        <Input
           name="lastname"
+          labelTitle="Last Name:"
           value={lastNameToAdd}
-          onChange={(e) => {
-            setLastName(e.target.value);
-          }}
+          setInput={setLastName}
         />
-      </label>
-      <label htmlFor="birthdate" className={["label", "label-birth"].join(" ")}>
-        Date of Birth:
         <DatePicker
+          labelTitle="Birth Date:"
           selected={valueBirthDate}
-          onChange={(date) => {
-            setValueBirthDate(date);
-            setBirthDate(date);
-          }}
-          dateFormat="dd/MM/yyyy"
-          isClearable
-          placeholderText="Select a date of birth"
-          fixedHeight
-          peekNextMonth
-          showMonthDropdown
-          useShortMonthInDropdown
-          showYearDropdown
-          dropdownMode="select"
-          todayButton="Today"
+          setValueDate={setValueBirthDate}
+          setDate={setBirthDate}
+          placeholder="Select a birth date"
         />
-      </label>
-      <label htmlFor="startdate" className={["label", "label-start"].join(" ")}>
-        Start Date:
         <DatePicker
+          labelTitle="Start Date:"
           selected={valueStartDate}
-          onChange={(date) => {
-            setValueStartDate(date);
-            setStartDate(date);
-          }}
-          dateFormat="dd/MM/yyyy"
-          isClearable
-          placeholderText="Select a start date"
-          fixedHeight
-          openToDate={new Date("1993/09/28")}
-          peekNextMonth
-          showMonthDropdown
-          useShortMonthInDropdown
-          showYearDropdown
-          dropdownMode="select"
-          todayButton="Today"
+          setValueDate={setValueStartDate}
+          setDate={setStartDate}
+          placeholder="Select a start date"
         />
-      </label>
 
-      <div className="adress">
-        <label className="label" htmlFor="street">
-          Street:
-          <input
-            type="text"
+        <div className="adress">
+          <Input
             name="street"
+            labelTitle="Street:"
             value={streetToAdd}
-            onChange={(e) => {
-              setStreet(e.target.value);
-            }}
+            setInput={setStreet}
           />
-        </label>
-        <label className="label" htmlFor="city">
-          City:
-          <input
-            type="text"
+          <Input
             name="city"
+            labelTitle="City:"
             value={cityToAdd}
-            onChange={(e) => {
-              setCity(e.target.value);
-            }}
+            setInput={setCity}
           />
-        </label>
-        <label className="label" htmlFor="state">
-          State:
-          <input
-            type="text"
-            name="state"
+          <Dropdown
+            name="etat"
+            id="label-etat"
+            labelTitle="State:"
             value={etatToAdd}
-            onChange={(e) => {
-              setEtat(e.target.value);
-            }}
+            setDrop={setEtat}
+            datas={dataStates}
           />
-        </label>
-        <label className="label" htmlFor="zipcode">
-          Zip Code:
-          <input
-            type="text"
+
+          <Input
             name="zipcode"
+            labelTitle="Zipcode:"
             value={zipCodeToAdd}
-            onChange={(e) => {
-              setZipCode(e.target.value);
-            }}
+            setInput={setZipCode}
           />
-        </label>
-      </div>
-      <label className="label" htmlFor="department">
-        Department:
-        <input
-          type="text"
+        </div>
+        <Dropdown
           name="department"
+          labelTitle="Department"
+          id="label-department"
           value={departmentToAdd}
-          onChange={(e) => {
-            setDepartement(e.target.value);
-          }}
+          setDrop={setDepartment}
+          datas={dataDepartments}
         />
-      </label>
-      <button className="btn">Save</button>
-    </form>
+        <input className="submit" type="submit" value="Save  &#x00AE;" />
+      </form>
+      {successMessageIsOpen && (
+        <div className="success">
+          <div className="success-message">
+            <p>Employee Created!</p>
+            <button onClick={closeSuccessMessage}>X</button>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
-export default AddEmployeeForm;
+export default Form;
