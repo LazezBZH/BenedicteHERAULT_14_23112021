@@ -6,10 +6,12 @@ Form {
   border: 1rem ridge #444444;
   border-radius: 1rem;
   padding: 0.5rem 2rem 2rem 2rem;
+  background-color: #c2c27da9;
 }
 .form-description {
   color: #444444;
   font-weight: bold;
+  background-color: #d5db99;
   border: 0.5rem ridge #d5db99;
 }
 .label {

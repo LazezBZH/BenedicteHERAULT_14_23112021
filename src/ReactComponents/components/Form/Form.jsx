@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { add } from "../../../Redux/Slice/employeeSlice";
-import DatePicker from "../DatePicker/MyDatePicker";
+import DatePicker from "./DatePicker/MyDatePicker";
 
-import dataStates from "../Dropdown/DropdownsData/dataStates";
-import dataDepartments from "../Dropdown/DropdownsData/dataDepartments";
+import dataStates from "./Dropdown/DropdownsData/dataStates";
+import dataDepartments from "./Dropdown/DropdownsData/dataDepartments";
 
 import "./Form.css";
-import Dropdown from "../Dropdown/Dropdowns";
-import Input from "../Input/Input";
+import Dropdown from "./Dropdown/Dropdowns";
+import Input from "./Input/Input";
 
 const Form = () => {
   const [
