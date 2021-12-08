@@ -10,10 +10,12 @@ Form {
 }
 .form-description {
   color: #444444;
+  font-size: 1.5rem;
   font-weight: bold;
   background-color: #d5db99;
   border: 0.5rem ridge #d5db99;
 }
+
 .label {
   width: 85%;
   display: flex;

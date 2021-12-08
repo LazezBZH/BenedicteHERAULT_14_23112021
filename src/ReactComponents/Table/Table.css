@@ -1,0 +1,76 @@
+table {
+  table-layout: fixed;
+  width: 95%;
+  border-collapse: collapse;
+  border: 0.5rem ridge #444444;
+  margin: 1rem auto;
+}
+th,
+td {
+  color: black;
+  padding: 0.3rem;
+  font-size: 0.9rem;
+}
+thead th {
+  padding-bottom: 0.5rem;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3));
+}
+.table-title {
+  width: 20rem;
+  margin: 1rem auto;
+  text-align: center;
+  color: #444444;
+  font-size: 2rem;
+  font-weight: bold;
+  background-color: #d5db99;
+  border: 0.5rem ridge #d5db99;
+}
+
+.table-col1 {
+  background-color: #6c8312;
+}
+.table-col2 {
+  background-color: #6c83124d;
+}
+
+.table-th1 {
+  color: black;
+}
+.table-th2 {
+  color: #444444;
+}
+.table-th3 {
+  color: #6c8312;
+}
+table tbody:nth-child(odd) {
+  background-color: #eaecce;
+  border-bottom: solid 0.05rem #9fa09b;
+}
+table tbody:nth-child(even) {
+  background-color: #daddc8;
+  border-bottom: solid 0.05rem #9fa09b;
+}
+
+table tbody:hover {
+  background-color: #b4d179;
+}
+
+table td:nth-child(3) {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+thead button {
+  font-family: "Rock Salt", cursive;
+  font-size: 1rem;
+}
+thead button.ascending::after {
+  content: " \2B07";
+  display: inline-block;
+  margin-left: 1em;
+}
+
+thead button.descending::after {
+  content: "\2B06";
+  display: inline-block;
+  margin-left: 1em;
+}
