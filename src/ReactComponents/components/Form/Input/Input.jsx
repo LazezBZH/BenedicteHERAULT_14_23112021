@@ -1,9 +1,9 @@
-export default function Input({ name, labelTitle, value, setInput }) {
+export default function Input({ type, name, labelTitle, value, setInput }) {
   return (
     <label className="label" htmlFor={name}>
       <p>{labelTitle}</p>
       <input
-        type="text"
+        type={type}
         name={name}
         value={value}
         required

@@ -9,6 +9,7 @@ import dataDepartments from "./Dropdown/DropdownsData/dataDepartments";
 import "./Form.css";
 import Dropdown from "./Dropdown/Dropdowns";
 import Input from "./Input/Input";
+import Modal from "./Modal/Modal";
 
 const Form = () => {
   const [
@@ -18,7 +19,7 @@ const Form = () => {
     startDateToAdd,
     streetToAdd,
     cityToAdd,
-    etatToAdd,
+    stateToAdd,
     zipCodeToAdd,
     departmentToAdd,
   ] = useSelector((state) => [
@@ -28,7 +29,7 @@ const Form = () => {
     state.startDate,
     state.street,
     state.city,
-    state.etat,
+    state.state,
     state.zipCode,
     state.department,
   ]);
@@ -39,7 +40,7 @@ const Form = () => {
   const [startDate, setStartDate] = useState(startDateToAdd);
   const [street, setStreet] = useState(streetToAdd);
   const [city, setCity] = useState(cityToAdd);
-  const [etat, setEtat] = useState(etatToAdd);
+  const [State, setState] = useState(stateToAdd);
   const [zipCode, setZipCode] = useState(zipCodeToAdd);
   const [department, setDepartment] = useState(departmentToAdd);
 
@@ -53,21 +54,21 @@ const Form = () => {
     setSuccessMessageIsOpen(false);
   };
 
-  /*const dateForTable = (date) => {
-    const month = date.getUTCMonth() + 1;
-    const day = date.getUTCDate();
+  const dateForTable = (date) => {
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
     const year = date.getUTCFullYear();
-    return `${month}/${day}/${year}`;
-  };*/
+    return `${month}/${day}/${year}`.toString();
+  };
 
   const employee = {
     firstName,
     lastName,
-    birthDate,
-    startDate,
+    birthDate: dateForTable(new Date(birthDate)),
+    startDate: dateForTable(new Date(startDate)),
     street,
     city,
-    etat,
+    State,
     zipCode,
     department,
   };
@@ -75,31 +76,31 @@ const Form = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(add(employee));
-    setSuccessMessageIsOpen(true);
     e.target.reset();
     setValueBirthDate(null);
     setValueStartDate(null);
+    setSuccessMessageIsOpen(true);
   };
 
   console.log(employee);
   console.log("BIRTH", birthDate);
   console.log("START", startDate);
-  console.log("ETAT", etat);
-
-  const birthDateForTable = JSON.stringify(birthDate);
-  console.log(birthDateForTable);
+  console.log("STATE", State);
 
   return (
     <>
       <form onSubmit={handleSubmit}>
         <div className="form-description">Create Employee</div>
         <Input
+          type="text"
           name="firstname"
           labelTitle="First Name:"
           value={firstNameToAdd}
           setInput={setFirstName}
+          regex="/\[([a-zA-Z]+)\]\[([a-zA-Z0-9.]+)\]\{(.+)\}/"
         />
         <Input
+          type="text"
           name="lastname"
           labelTitle="Last Name:"
           value={lastNameToAdd}
@@ -122,27 +123,29 @@ const Form = () => {
 
         <div className="adress">
           <Input
+            type="text"
             name="street"
             labelTitle="Street:"
             value={streetToAdd}
             setInput={setStreet}
           />
           <Input
+            type="text"
             name="city"
             labelTitle="City:"
             value={cityToAdd}
             setInput={setCity}
           />
           <Dropdown
-            name="etat"
-            id="label-etat"
+            name="state"
             labelTitle="State:"
-            value={etatToAdd}
-            setDrop={setEtat}
+            value={State}
+            setDrop={setState}
             datas={dataStates}
           />
 
           <Input
+            type="number"
             name="zipcode"
             labelTitle="Zipcode:"
             value={zipCodeToAdd}
@@ -152,7 +155,6 @@ const Form = () => {
         <Dropdown
           name="department"
           labelTitle="Department"
-          id="label-department"
           value={departmentToAdd}
           setDrop={setDepartment}
           datas={dataDepartments}
@@ -160,12 +162,7 @@ const Form = () => {
         <input className="submit" type="submit" value="Save  &#x00AE;" />
       </form>
       {successMessageIsOpen && (
-        <div className="success">
-          <div className="success-message">
-            <p>Employee Created!</p>
-            <button onClick={closeSuccessMessage}>X</button>
-          </div>
-        </div>
+        <Modal close={closeSuccessMessage} text="Employee Created!" />
       )}
     </>
   );

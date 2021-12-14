@@ -76,3 +76,20 @@ thead button.descending::after {
   display: inline-block;
   margin-left: 1em;
 }
+/*For test
+.ag-theme-alpine {
+  
+  --ag-foreground-color: #444444;
+}
+
+.ag-theme-alpine .ag-header-cell-label {
+  font-style: italic;
+  background-color: #708819b7;
+  color: #444444;
+  font-size: 1rem;
+  padding: 1rem;
+}
+.ag-header-cell {
+  background-color: #444444ed;
+}
+*/

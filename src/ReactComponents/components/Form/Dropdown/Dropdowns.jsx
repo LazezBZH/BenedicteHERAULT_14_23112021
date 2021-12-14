@@ -1,18 +1,10 @@
-export default function Dropdown({
-  name,
-  id,
-  value,
-  setDrop,
-  datas,
-  labelTitle,
-}) {
+export default function Dropdown({ name, value, setDrop, datas, labelTitle }) {
   return (
     <label className="label" htmlFor={name}>
       <p>{labelTitle}</p>
       <select
         name={name}
         required
-        id={id}
         value={value}
         onChange={(e) => setDrop(e.target.value)}
       >
