@@ -12,7 +12,7 @@ export default function Employees() {
     <div className="employees">
       <Banner />
       <div className="table">
-        <MyTable datas={employees} />
+        <MyTable employees={employees} />
       </div>
 
       <div className="employees-link">

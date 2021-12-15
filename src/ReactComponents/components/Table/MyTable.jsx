@@ -1,81 +1,53 @@
 import React, { useState } from "react";
 import Input from "../Form/Input/Input";
 import Table from "./Table";
+import useSortableData from "./TableSort";
+import search from "./TableSearch";
+import Pages from "./TablePages";
+
 import "./Table.css";
-//import TablePages from "./TablePages";
-
-const useSortableData = (items, config = null) => {
-  const [sortConfig, setSortConfig] = React.useState(config);
-
-  const sortedItems = React.useMemo(() => {
-    let sortableItems = [...items];
-
-    if (sortConfig !== null) {
-      sortableItems.sort((a, b) => {
-        if (a[sortConfig.key] < b[sortConfig.key]) {
-          return sortConfig.direction === "ascending" ? -1 : 1;
-        }
-        if (a[sortConfig.key] > b[sortConfig.key]) {
-          return sortConfig.direction === "ascending" ? 1 : -1;
-        }
-        return 0;
-      });
-    }
-    return sortableItems;
-  }, [items, sortConfig]);
-
-  const requestSort = (key) => {
-    let direction = "ascending";
-    if (
-      sortConfig &&
-      sortConfig.key === key &&
-      sortConfig.direction === "ascending"
-    ) {
-      direction = "descending";
-    }
-    setSortConfig({ key, direction });
-  };
-
-  return { items: sortedItems, requestSort, sortConfig };
-};
 
 const MyTable = (props) => {
+  const employees = JSON.parse(localStorage.getItem("employees"));
+
+  //search
   const [toSearch, setToSearch] = useState("");
-  const search = (elements) => {
-    return elements.filter(
-      (el) =>
-        el.firstName.toLowerCase().indexOf(toSearch.toLowerCase()) > -1 ||
-        el.lastName.toLowerCase().indexOf(toSearch.toLowerCase()) > -1 ||
-        el.startDate.indexOf(toSearch) > -1 ||
-        el.department.toLowerCase().indexOf(toSearch.toLowerCase()) > -1
-    );
-  };
-  const { items, requestSort, sortConfig } = useSortableData(props.datas);
+  //pagination
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const postPerPage = 5;
+  const indexOfLastPost = currentPage * postPerPage;
+  const indexOfFirstPost = indexOfLastPost - postPerPage;
+  const currentPost = employees.slice(indexOfFirstPost, indexOfLastPost);
+  const page = (pageNumber) => setCurrentPage(pageNumber);
+  //sort
+  const { items, requestSort, sortConfig } = useSortableData(currentPost);
   const getClassNamesFor = (name) => {
     if (!sortConfig) {
       return;
     }
     return sortConfig.key === name ? sortConfig.direction : undefined;
   };
+
   return (
-    <>
+    <div className="myTable">
+      <Input
+        type="search"
+        name="research"
+        labelTitle="Search:"
+        value={toSearch}
+        setInput={setToSearch}
+      />
       <table>
         <caption className="table-title">Current Employees</caption>
 
-        <Input
-          type="search"
-          name="research"
-          labelTitle="Search:"
-          value={toSearch}
-          setInput={setToSearch}
-        />
         <colgroup>
           <col className="table-col1" span="2"></col>
           <col className="table-col2" span="2"></col>
         </colgroup>
         <thead>
           <tr>
-            <th className="table-th1">
+            <th>
               <button
                 type="button"
                 onClick={() => requestSort("firstName")}
@@ -84,7 +56,7 @@ const MyTable = (props) => {
                 First Name
               </button>
             </th>
-            <th className="table-th1">
+            <th>
               <button
                 type="button"
                 onClick={() => requestSort("lastName")}
@@ -93,7 +65,7 @@ const MyTable = (props) => {
                 Last Name
               </button>
             </th>
-            <th table-th2>
+            <th>
               <button
                 type="button"
                 onClick={() => requestSort("startDate")}
@@ -102,7 +74,7 @@ const MyTable = (props) => {
                 Start Date
               </button>
             </th>
-            <th table-th2>
+            <th>
               <button
                 type="button"
                 onClick={() => requestSort("department")}
@@ -111,7 +83,7 @@ const MyTable = (props) => {
                 Department
               </button>
             </th>
-            <th className="table-th3">
+            <th>
               <button
                 type="button"
                 onClick={() => requestSort("birthDate")}
@@ -120,7 +92,7 @@ const MyTable = (props) => {
                 Date of Birth
               </button>
             </th>
-            <th className="table-th3">
+            <th>
               <button
                 type="button"
                 onClick={() => requestSort("street")}
@@ -129,7 +101,7 @@ const MyTable = (props) => {
                 Street
               </button>
             </th>
-            <th className="table-th3">
+            <th>
               <button
                 type="button"
                 onClick={() => requestSort("city")}
@@ -138,7 +110,7 @@ const MyTable = (props) => {
                 City
               </button>
             </th>
-            <th className="table-th3">
+            <th>
               <button
                 type="button"
                 onClick={() => requestSort("State")}
@@ -147,7 +119,7 @@ const MyTable = (props) => {
                 State
               </button>
             </th>
-            <th className="table-th3">
+            <th>
               <button
                 type="button"
                 onClick={() => requestSort("zipCode")}
@@ -159,9 +131,15 @@ const MyTable = (props) => {
           </tr>
         </thead>
 
-        <Table items={search(items)} />
+        <Table items={search(items, toSearch)} />
       </table>
-    </>
+
+      <Pages
+        postPerPage={postPerPage}
+        totalOfPosts={employees.length}
+        page={page}
+      />
+    </div>
   );
 };
 

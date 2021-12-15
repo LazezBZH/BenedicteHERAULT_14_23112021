@@ -8,7 +8,9 @@ export default function Pages({ postPerPage, totalOfPosts, page }) {
     <div className="page">
       {numberOfPages.map((number) => (
         <div key={number}>
-          <p onClick={() => page(number)}>{number}</p>
+          <p className="number" onClick={() => page(number)}>
+            {number}
+          </p>
         </div>
       ))}
     </div>
