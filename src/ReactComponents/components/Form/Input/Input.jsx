@@ -1,8 +1,16 @@
-export default function Input({ type, name, labelTitle, value, setInput }) {
+export default function Input({
+  type,
+  name,
+  labelTitle,
+  value,
+  setInput,
+  className,
+}) {
   return (
     <label className="label" htmlFor={name}>
       <p>{labelTitle}</p>
       <input
+        className={className}
         type={type}
         name={name}
         value={value}

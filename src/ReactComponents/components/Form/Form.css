@@ -63,6 +63,8 @@ Form {
   background-color: #444444;
   color: white;
   border-radius: 0.5rem;
+  padding-bottom: 1.6rem;
+  padding-top: 0.6rem;
 }
 .react-datepicker-wrapper input {
   width: 100%;

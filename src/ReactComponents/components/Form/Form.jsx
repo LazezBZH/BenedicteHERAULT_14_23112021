@@ -159,7 +159,12 @@ const Form = () => {
           setDrop={setDepartment}
           datas={dataDepartments}
         />
-        <input className="submit" type="submit" value="Save  &#x00AE;" />
+        <Input
+          type="submit"
+          name="submit"
+          className="submit"
+          value="Save  &#x00AE;"
+        />
       </form>
       {successMessageIsOpen && (
         <Modal close={closeSuccessMessage} text="Employee Created!" />

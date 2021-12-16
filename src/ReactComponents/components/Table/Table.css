@@ -70,10 +70,23 @@ thead button.descending::after {
 }
 
 .page {
-  width: 98%;
   display: flex;
   flex-direction: row;
-  justify-content: end;
+}
+.pagination {
+  width: 97%;
+  display: flex;
+  justify-content: flex-end;
+}
+.pagination p {
+  font-weight: bolder;
+}
+.pagination button:active {
+  background: olive;
+}
+
+.pagination button:focus {
+  background: olive;
 }
 .number {
   background-color: #444444;
@@ -88,15 +101,22 @@ thead button.descending::after {
 }
 
 .myTable input {
-  height: 2.5rem;
+  height: 2.6rem;
   margin-left: 1rem;
   width: 65%;
-  background-color: #6c831285;
-  color: white;
+  background-color: #b4d179;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #444444;
 }
 .myTable select {
-  width: 30%;
+  width: 33%;
   margin: 0 1rem;
+  background-color: #b4d179;
+  color: #444444;
+  padding-left: 0.4rem;
+  padding-top: 0.2rem;
+  font-size: 1rem;
 }
 .myTable .table-utils-2 label {
   display: flex;
@@ -124,6 +144,7 @@ thead button.descending::after {
   padding: 0.5rem;
   border-radius: 0.5rem;
 }
+
 /*For test
 .ag-theme-alpine {
   
