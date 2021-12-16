@@ -1,4 +1,11 @@
-export default function Dropdown({ name, value, setDrop, datas, labelTitle }) {
+export default function Dropdown({
+  name,
+  value,
+  setDrop,
+  datas,
+  labelTitle,
+  labelTitle2,
+}) {
   return (
     <label className="label" htmlFor={name}>
       <p>{labelTitle}</p>
@@ -14,6 +21,7 @@ export default function Dropdown({ name, value, setDrop, datas, labelTitle }) {
           </option>
         ))}
       </select>
+      <p>{labelTitle2}</p>
     </label>
   );
 }

@@ -4,6 +4,8 @@ import Table from "./Table";
 import useSortableData from "./TableSort";
 import search from "./TableSearch";
 import Pages from "./TablePages";
+import Dropdown from "../Form/Dropdown/Dropdowns";
+import rowsPerPage from "../Form/Dropdown/DropdownsData/dataPages";
 
 import "./Table.css";
 
@@ -15,7 +17,8 @@ const MyTable = (props) => {
   //pagination
   const [currentPage, setCurrentPage] = useState(1);
 
-  const postPerPage = 5;
+  const [postPerPage, setPostPerPage] = useState(10);
+  const employeesArr = Array.from(props.employees);
   const indexOfLastPost = currentPage * postPerPage;
   const indexOfFirstPost = indexOfLastPost - postPerPage;
   const currentPost = employees.slice(indexOfFirstPost, indexOfLastPost);
@@ -31,13 +34,25 @@ const MyTable = (props) => {
 
   return (
     <div className="myTable">
-      <Input
-        type="search"
-        name="research"
-        labelTitle="Search:"
-        value={toSearch}
-        setInput={setToSearch}
-      />
+      <div className="table-utils-1">
+        <Dropdown
+          name="rowPerPage"
+          labelTitle="Show:"
+          labelTitle2="entries:"
+          value={postPerPage}
+          setDrop={setPostPerPage}
+          datas={rowsPerPage}
+        />
+      </div>
+      <div className="table-utils-2">
+        <Input
+          type="search"
+          name="research"
+          labelTitle="Search:"
+          value={toSearch}
+          setInput={setToSearch}
+        />
+      </div>
       <table>
         <caption className="table-title">Current Employees</caption>
 
