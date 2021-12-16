@@ -69,32 +69,6 @@ thead button.descending::after {
   margin-left: 1em;
 }
 
-.page {
-  display: flex;
-  flex-direction: row;
-}
-.pagination {
-  width: 97%;
-  display: flex;
-  justify-content: flex-end;
-}
-.pagination p {
-  font-weight: bolder;
-}
-.pagination button:active {
-  background: olive;
-}
-
-.pagination button:focus {
-  background: olive;
-}
-.number {
-  background-color: #444444;
-  border-radius: 10%;
-  color: white;
-  margin: 0 0.5rem;
-  padding: 0.5rem 1rem;
-}
 .myTable {
   position: relative;
   margin-top: 5rem;
@@ -144,21 +118,42 @@ thead button.descending::after {
   padding: 0.5rem;
   border-radius: 0.5rem;
 }
-
-/*For test
-.ag-theme-alpine {
-  
-  --ag-foreground-color: #444444;
+.myTable .table-utils-1 p,
+.myTable .table-utils-2 p {
+  color: white;
 }
 
-.ag-theme-alpine .ag-header-cell-label {
-  font-style: italic;
-  background-color: #708819b7;
-  color: #444444;
-  font-size: 1rem;
-  padding: 1rem;
+.page {
+  display: flex;
+  flex-direction: row;
 }
-.ag-header-cell {
-  background-color: #444444ed;
+.pagination {
+  display: flex;
+  justify-content: flex-end;
 }
-*/
+.pagination p {
+  font-weight: bold;
+}
+.pagination button:active {
+  background: olive;
+}
+
+.pagination button:focus {
+  background: olive;
+}
+.number {
+  background-color: #444444;
+  border-radius: 10%;
+  color: white;
+  margin: 0 0.5rem;
+  padding: 0.5rem 1rem;
+}
+.table-footer {
+  width: 97%;
+  display: flex;
+  justify-content: space-between;
+}
+.table-footer-p {
+  margin-left: 3rem;
+  font-weight: bold;
+}

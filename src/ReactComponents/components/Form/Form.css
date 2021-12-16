@@ -37,6 +37,7 @@ Form {
 .label p {
   margin: 0.5rem 0 0.2rem 0;
   text-align: left;
+  color: black;
 }
 .adress {
   width: 85%;

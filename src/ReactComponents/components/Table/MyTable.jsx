@@ -18,7 +18,7 @@ const MyTable = (props) => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const [postPerPage, setPostPerPage] = useState(10);
-  //const employeesArr = Array.from(props.employees);
+
   const indexOfLastPost = currentPage * postPerPage;
   const indexOfFirstPost = indexOfLastPost - postPerPage;
   const currentPost = employees.slice(indexOfFirstPost, indexOfLastPost);
@@ -149,35 +149,56 @@ const MyTable = (props) => {
         <Table items={search(items, toSearch)} />
       </table>
 
-      <div className="pagination">
-        {currentPage === 1 ? (
-          <div></div>
-        ) : (
-          <p
-            onClick={() => {
-              setCurrentPage(currentPage - 1);
-            }}
-          >
-            Previous
-          </p>
-        )}
-
-        <Pages
-          postPerPage={postPerPage}
-          totalOfPosts={employees.length}
-          page={page}
-        />
-        {currentPage === Math.ceil(employees.length / postPerPage) ? (
-          <div></div>
-        ) : (
-          <p
-            onClick={() => {
-              setCurrentPage(currentPage + 1);
-            }}
-          >
-            Next
-          </p>
-        )}
+      <div className="table-footer">
+        <div>
+          {employees.length === 0 ? (
+            <p className="table-footer-p">No employee created yet!</p>
+          ) : (
+            [
+              currentPage === Math.ceil(employees.length / postPerPage) ? (
+                <p className="table-footer-p">
+                  Showing {indexOfFirstPost + 1} to {employees.length} of &nbsp;
+                  {employees.length} entries
+                </p>
+              ) : (
+                <p className="table-footer-p">
+                  Showing {indexOfFirstPost + 1} to {indexOfLastPost} of &nbsp;
+                  {employees.length} entries
+                </p>
+              ),
+            ]
+          )}
+        </div>
+        <div className="pagination">
+          {currentPage === 1 ? (
+            <div></div>
+          ) : (
+            <p
+              onClick={() => {
+                setCurrentPage(currentPage - 1);
+              }}
+            >
+              Previous
+            </p>
+          )}
+          <Pages
+            postPerPage={postPerPage}
+            totalOfPosts={employees.length}
+            page={page}
+          />
+          {currentPage === Math.ceil(employees.length / postPerPage) ||
+          employees.length === 0 ? (
+            <div></div>
+          ) : (
+            <p
+              onClick={() => {
+                setCurrentPage(currentPage + 1);
+              }}
+            >
+              Next
+            </p>
+          )}
+        </div>
       </div>
     </div>
   );
