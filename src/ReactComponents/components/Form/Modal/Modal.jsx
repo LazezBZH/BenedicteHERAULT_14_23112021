@@ -1,13 +1,33 @@
 import React from "react";
-import "./Modal.css";
+import { ThemeProvider } from "styled-components";
 
-export default function Modal({ text, close }) {
+import {
+  ModalContainer,
+  ModalMessage,
+  ModalButton,
+  defaultTheme,
+} from "./styled/modal";
+
+/* set here your own colors and replace defaultTheme by myTheme
+const myTheme = {
+  containerBg: " ",
+  messageBg: " ",
+  messageHoverBg: " ",
+  messageHoverTxt: " ",
+  borderColor: " ",
+  buttonBg: " ",
+  buttonHoverBg: " ",
+  buttonHoverTxt: " ",
+};*/
+export default function Modal(props) {
   return (
-    <div className="success">
-      <div className="success-message">
-        <p>{text}</p>
-        <button onClick={close}>X</button>
-      </div>
-    </div>
+    <ThemeProvider theme={props.theme}>
+      <ModalContainer>
+        <ModalMessage>
+          <p>{props.text}</p>
+          <ModalButton onClick={props.close}>X</ModalButton>
+        </ModalMessage>
+      </ModalContainer>
+    </ThemeProvider>
   );
 }

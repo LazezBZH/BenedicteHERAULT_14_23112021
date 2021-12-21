@@ -9,9 +9,21 @@ import dataDepartments from "./Dropdown/DropdownsData/dataDepartments";
 import "./Form.css";
 import Dropdown from "./Dropdown/Dropdowns";
 import Input from "./Input/Input";
-import Modal from "./Modal/Modal";
+import MyModal from "modal-by-lazez";
+import { defaultTheme } from "./Modal/styled/modal";
 
 const Form = () => {
+  /*const myTheme = {
+    containerBg: "red",
+    messageBg: "blue ",
+    messageHoverBg: "white ",
+    messageHoverTxt: "black ",
+    borderColor: " yellow",
+    buttonBg: "red ",
+    buttonHoverBg: "black ",
+    buttonHoverTxt: "white ",
+  };*/
+
   const [
     firstNameToAdd,
     lastNameToAdd,
@@ -49,10 +61,9 @@ const Form = () => {
 
   const dispatch = useDispatch();
 
-  const [successMessageIsOpen, setSuccessMessageIsOpen] = useState(false);
-  const closeSuccessMessage = () => {
-    setSuccessMessageIsOpen(false);
-  };
+  const [openModal, setOpenModal] = useState(false);
+  const onOpenModal = () => setOpenModal(true);
+  const onCloseModal = () => setOpenModal(false);
 
   const dateForTable = (date) => {
     const month = date.getMonth() + 1;
@@ -79,7 +90,7 @@ const Form = () => {
     e.target.reset();
     setValueBirthDate(null);
     setValueStartDate(null);
-    setSuccessMessageIsOpen(true);
+    onOpenModal();
   };
 
   console.log(employee);
@@ -166,8 +177,12 @@ const Form = () => {
           value="Save  &#x00AE;"
         />
       </form>
-      {successMessageIsOpen && (
-        <Modal close={closeSuccessMessage} text="Employee Created!" />
+      {openModal && (
+        <MyModal
+          theme={defaultTheme}
+          close={onCloseModal}
+          text="Employee Created!"
+        />
       )}
     </>
   );

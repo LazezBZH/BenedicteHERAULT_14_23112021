@@ -1,6 +1,7 @@
 import Banner from "../../components/Banner/Banner";
 import Form from "../../components/Form/Form";
 import Footer from "../../components/Footer/Footer";
+
 import { Link } from "react-router-dom";
 import "./Home.css";
 
