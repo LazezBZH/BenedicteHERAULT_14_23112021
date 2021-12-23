@@ -7,22 +7,22 @@ import dataStates from "./Dropdown/DropdownsData/dataStates";
 import dataDepartments from "./Dropdown/DropdownsData/dataDepartments";
 
 import "./Form.css";
+
 import Dropdown from "./Dropdown/Dropdowns";
 import Input from "./Input/Input";
-import MyModal from "modal-by-lazez";
-import { defaultTheme } from "./Modal/styled/modal";
+import { Modal } from "customizable-react-modal-by-lazez";
 
 const Form = () => {
-  /*const myTheme = {
-    containerBg: "red",
-    messageBg: "blue ",
-    messageHoverBg: "white ",
-    messageHoverTxt: "black ",
-    borderColor: " yellow",
-    buttonBg: "red ",
-    buttonHoverBg: "black ",
-    buttonHoverTxt: "white ",
-  };*/
+  const myTheme = {
+    containerBg: "rgba(146, 146, 96, .9)",
+    messageBg: "#444444",
+    messageHoverBg: "#aebf8e",
+    messageHoverTxt: "black",
+    borderColor: "#d5db99",
+    buttonBg: "#d5db99",
+    buttonHoverBg: "#444444",
+    buttonHoverTxt: "white",
+  };
 
   const [
     firstNameToAdd,
@@ -178,11 +178,7 @@ const Form = () => {
         />
       </form>
       {openModal && (
-        <MyModal
-          theme={defaultTheme}
-          close={onCloseModal}
-          text="Employee Created!"
-        />
+        <Modal theme={myTheme} close={onCloseModal} text="Employee Created!" />
       )}
     </>
   );
