@@ -1,70 +1,32 @@
-# Getting Started with Create React App
+# Projet 14 de la formation développeur front-end OpenClassrooms
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Faites passer une librairie jQuery vers React
 
-## Available Scripts
+[![Netlify Status](https://api.netlify.com/api/v1/badges/444edf48-004e-49d2-a645-5fd2624552cc/deploy-status)](https://app.netlify.com/sites/hrnet-p14-dfe-oc-herault-benedicte/deploys)
 
-In the project directory, you can run:
+#
 
-### `yarn start`
+![logo1](https://github.com/LazezBZH/BenedicteHERAULT_14_23112021/blob/master/src/assets/HRnet%20logo.gif?raw=true)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- [Deployment on Netlify ](https://hrnet-p14-dfe-oc-herault-benedicte.netlify.app/)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- [Old Version on Netlify ](https://oldversion-hrnet-b-herault.netlify.app/)
 
-### `yarn test`
+## To do
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Migrate a jQuery library to React project (4 components= modal, dropdown, datepicker and table)
 
-### `yarn build`
+Reduce the technical debt
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Possible to modernise the style (but not essential)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Code a React component, publish it on npm and use it in the project
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## npm component made for this project
 
-### `yarn eject`
+- [My component repository ](https://github.com/LazezBZH/customizable-react-modal-lazez)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- [My component on npm](https://www.npmjs.com/package/customizable-react-modal-by-lazez)
+- [My component demo on Netlify](https://customizable-react-modal-lazez.netlify.app/)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![logo](https://github.com/LazezBZH/BenedicteHERAULT_14_23112021/blob/master/src/assets/WealthHealth.png?raw=true)
