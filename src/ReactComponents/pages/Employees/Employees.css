@@ -28,3 +28,39 @@
 .table {
   margin-top: -10rem;
 }
+
+@media (max-width: 1300px) {
+  .employees .banner img {
+    width: 11rem;
+  }
+}
+@media (max-width: 970px) {
+  .employees .banner img {
+    width: 10rem;
+  }
+}
+
+@media (max-width: 720px) {
+  .banner img {
+    width: 8rem;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  h1 {
+    padding-top: 10rem;
+    padding-bottom: 2rem;
+  }
+}
+@media (max-width: 575px) {
+  h1 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+}
+@media (max-width: 540px) {
+  .banner img {
+    display: none;
+  }
+}
