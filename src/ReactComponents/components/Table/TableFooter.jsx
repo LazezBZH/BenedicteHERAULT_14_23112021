@@ -12,10 +12,16 @@ export default function TableFooter({
 }) {
   return (
     <div className="table-footer">
-      {isSearching ? (
-        <span className="table-footer-p">{`Showing ${minFilteredShow} to ${maxFilteredShow} of ${totalEntriesShow} entries (filtered from ${totalEntries} total entries)`}</span>
+      {totalEntries === 0 ? (
+        <p className="table-footer-p"></p>
       ) : (
-        <span className="table-footer-p">{`Showing ${minRows} to ${maxRows} of ${totalEntries} entries`}</span>
+        [
+          isSearching ? (
+            <span className="table-footer-p">{`Showing ${minFilteredShow} to ${maxFilteredShow} of ${totalEntriesShow} entries (filtered from ${totalEntries} total entries)`}</span>
+          ) : (
+            <span className="table-footer-p">{`Showing ${minRows} to ${maxRows} of ${totalEntries} entries`}</span>
+          ),
+        ]
       )}
     </div>
   );

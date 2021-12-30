@@ -50,7 +50,9 @@ const Pagination = ({
         type="button"
         onClick={handleNextPage}
         className={
-          currentPage === nbPages ? "number number-disabled" : "number"
+          currentPage === nbPages || totalEntries === 0
+            ? "number number-disabled"
+            : "number"
         }
       >
         Next

@@ -18,10 +18,6 @@ const Table = ({
     <table className="table-main">
       <caption className="table-title">Current Employees</caption>
 
-      <colgroup>
-        <col className="table-col1" span="2"></col>
-        <col className="table-col2" span="2"></col>
-      </colgroup>
       <thead>
         <tr className="table-header-row">
           {/* labels*/}
