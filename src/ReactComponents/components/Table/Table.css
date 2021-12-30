@@ -26,23 +26,16 @@ thead th {
   border: 0.5rem ridge #d5db99;
 }
 
-.table-col1 {
-  background-color: #6c8312;
-}
-.table-col2 {
-  background-color: #6c83124d;
-}
-
-table tbody:nth-child(odd) {
+table tbody tr:nth-child(odd) {
   background-color: #eaecce;
   border-bottom: solid 0.05rem #9fa09b;
 }
-table tbody:nth-child(even) {
+table tbody tr:nth-child(even) {
   background-color: #daddc8;
   border-bottom: solid 0.05rem #9fa09b;
 }
 
-table tbody:hover {
+table tbody tr:hover {
   background-color: #b4d179;
 }
 
@@ -51,22 +44,24 @@ table td:nth-child(4) {
   background-color: rgba(0, 0, 0, 0.08);
 }
 
-thead button {
+.table-header-cell {
   font-family: "Rock Salt", cursive;
   color: #b4d179;
   font-size: 1rem;
   background-color: #444444;
+  border-radius: 0.2rem;
+  padding: 0.5rem;
 }
-thead button.ascending::after {
+.icon-down-active:after {
   content: " \2B07";
   display: inline-block;
-  margin-left: 1em;
+  font-size: 1.2rem;
 }
 
-thead button.descending::after {
+.icon-up-active:after {
   content: "\2B06";
   display: inline-block;
-  margin-left: 1em;
+  font-size: 1.2rem;
 }
 
 .myTable {
@@ -74,53 +69,56 @@ thead button.descending::after {
   margin-top: 5rem;
 }
 
-.myTable input {
-  height: 2.6rem;
+.table-utils {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: -6rem;
+}
+.table-utils-2 {
+  display: flex;
+  flex-direction: row;
+  width: auto;
+  height: 2.5rem;
+  background-color: #444444;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  margin-right: 3%;
+}
+.table-utils-2 input {
+  width: 10rem;
   margin-left: 1rem;
-  width: 65%;
-  background-color: #b4d179;
+  padding-left: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: rgb(206, 206, 128);
   font-size: 1.2rem;
   font-weight: bold;
-  color: #444444;
 }
-.myTable select {
-  width: 33%;
-  margin: 0 1rem;
-  background-color: #b4d179;
-  color: #444444;
-  padding-left: 0.4rem;
-  padding-top: 0.2rem;
+.table-utils-1 {
+  display: flex;
+  flex-direction: row;
+  width: auto;
+  height: 2.5rem;
+  background-color: #444444;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  margin-left: 3%;
+}
+.table-utils-1 select {
+  padding: 0.5rem;
+  margin: auto 1rem;
+  background-color: rgb(206, 206, 128);
   font-size: 1rem;
-}
-.myTable .table-utils-2 label {
-  display: flex;
-  flex-direction: row;
-  position: absolute;
-  right: 3%;
-  top: 3%;
-  width: 15%;
-  height: 2.5rem;
-  background-color: #444444;
-  color: white;
-  padding: 0.5rem;
+  font-weight: bolder;
   border-radius: 0.5rem;
 }
-.myTable .table-utils-1 label {
-  display: flex;
-  flex-direction: row;
-  position: absolute;
-  left: 3%;
-  top: 3%;
-  width: 15%;
-  height: 2.5rem;
-  background-color: #444444;
-  color: white;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-}
-.myTable .table-utils-1 p,
-.myTable .table-utils-2 p {
-  color: white;
+.table-utils-1 label,
+.table-utils-2 label,
+.table-utils-1 span {
+  padding: 00.5rem;
+  margin: auto 0;
 }
 
 .page {
@@ -134,19 +132,20 @@ thead button.descending::after {
 .pagination p {
   font-weight: bold;
 }
-.pagination button:active {
-  background: olive;
-}
 
-.pagination button:focus {
-  background: olive;
-}
 .number {
   background-color: #444444;
   border-radius: 10%;
   color: white;
   margin: 0 0.5rem;
   padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+.number-active {
+  background: olive;
+}
+.number-disabled {
+  display: none;
 }
 .table-footer {
   width: 97%;
@@ -156,4 +155,10 @@ thead button.descending::after {
 .table-footer-p {
   margin-left: 3rem;
   font-weight: bold;
+}
+
+@media (max-width: 950px) {
+  .table-utils {
+    margin-bottom: 0rem;
+  }
 }

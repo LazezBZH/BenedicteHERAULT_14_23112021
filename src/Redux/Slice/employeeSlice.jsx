@@ -4,13 +4,13 @@ const initialState = {
   employee: {
     firstName: "",
     lastName: "",
-    birthDate: "",
     startDate: "",
+    department: "",
+    birthDate: "",
     street: "",
     city: "",
     State: "",
     zipCode: "",
-    department: "",
   },
 };
 let employees = JSON.parse(localStorage.getItem("employees")) || [];
@@ -26,36 +26,36 @@ const employeeSlice = createSlice({
     add: (state, action) => {
       state.firstName = action.payload.firstName;
       state.lastName = action.payload.lastName;
-      state.birthDate = action.payload.birthDate;
       state.startDate = action.payload.startDate;
+      state.zipCode = action.payload.zipCode;
+      state.department = action.payload.department;
+      state.birthDate = action.payload.birthDate;
       state.street = action.payload.street;
       state.city = action.payload.city;
       state.State = action.payload.State;
-      state.zipCode = action.payload.zipCode;
-      state.department = action.payload.department;
 
       const {
         firstName,
         lastName,
-        birthDate,
         startDate,
+        department,
+        birthDate,
         street,
         city,
         State,
         zipCode,
-        department,
       } = state;
 
       employees.push({
         firstName,
         lastName,
-        birthDate,
         startDate,
+        department,
+        birthDate,
         street,
         city,
         State,
         zipCode,
-        department,
       });
 
       localStorage.setItem("employees", JSON.stringify(employees));

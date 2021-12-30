@@ -15,18 +15,39 @@
   margin-right: 5rem;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 910px) {
+  .banner {
+    width: 90%;
+    height: 18vh;
+
+    display: flex;
+    justify-content: space-evenly;
+    margin: auto;
+  }
   .banner img {
-    height: 20rem;
+    height: 10rem;
     position: relative;
-    bottom: 5rem;
+    bottom: 8rem;
+  }
+  .banner h2 {
+    margin-right: 5rem;
   }
 }
-@media (max-width: 600px) {
+@media (max-width: 760px) {
   .banner {
-    display: block;
+    width: 98%;
+    height: 18vh;
+
+    display: flex;
+    justify-content: space-evenly;
+    margin: auto;
   }
   .banner img {
-    position: inherit;
+    height: 10rem;
+    position: relative;
+    bottom: 0rem;
+  }
+  .banner h2 {
+    margin-right: 5rem;
   }
 }

@@ -107,3 +107,48 @@ Form {
   color: #b8c976;
   background-color: #44444456;
 }
+
+@media (max-width: 1025px) {
+  Form {
+    width: 40%;
+  }
+  .label input {
+    height: 2rem;
+  }
+  .label select {
+    height: 2.8rem;
+  }
+  .adress {
+    height: 18rem;
+  }
+  .submit {
+    width: 7rem;
+    height: 3rem;
+  }
+  .react-datepicker-wrapper input {
+    width: 97%;
+    height: 2.5rem;
+  }
+}
+@media (max-width: 800px) {
+  Form {
+    width: 60%;
+  }
+  .label input {
+    height: 2rem;
+  }
+  .label select {
+    height: 2.8rem;
+  }
+  .adress {
+    height: 18rem;
+  }
+  .submit {
+    width: 7rem;
+    height: 3rem;
+  }
+  .react-datepicker-wrapper input {
+    width: 97%;
+    height: 2.5rem;
+  }
+}

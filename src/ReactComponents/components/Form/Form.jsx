@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { add } from "../../../Redux/Slice/employeeSlice";
 import DatePicker from "./DatePicker/MyDatePicker";
 
-import dataStates from "./Dropdown/DropdownsData/dataStates";
-import dataDepartments from "./Dropdown/DropdownsData/dataDepartments";
+import dataStates from "../../../data/dataStates";
+import dataDepartments from "../../../data/dataDepartments";
 
 import "./Form.css";
 
@@ -27,23 +27,23 @@ const Form = () => {
   const [
     firstNameToAdd,
     lastNameToAdd,
-    birthDateToAdd,
     startDateToAdd,
+    departmentToAdd,
+    birthDateToAdd,
     streetToAdd,
     cityToAdd,
     stateToAdd,
     zipCodeToAdd,
-    departmentToAdd,
   ] = useSelector((state) => [
     state.firstName,
     state.lastName,
-    state.birthDate,
     state.startDate,
+    state.department,
+    state.birthDate,
     state.street,
     state.city,
     state.state,
     state.zipCode,
-    state.department,
   ]);
 
   const [firstName, setFirstName] = useState(firstNameToAdd);
@@ -75,13 +75,13 @@ const Form = () => {
   const employee = {
     firstName,
     lastName,
-    birthDate: dateForTable(new Date(birthDate)),
     startDate: dateForTable(new Date(startDate)),
+    department,
+    birthDate: dateForTable(new Date(birthDate)),
     street,
     city,
     State,
     zipCode,
-    department,
   };
 
   const handleSubmit = (e) => {

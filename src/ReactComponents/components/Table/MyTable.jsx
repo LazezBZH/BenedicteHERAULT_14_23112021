@@ -1,207 +1,130 @@
 import React, { useState } from "react";
-import Input from "../Form/Input/Input";
-import Table from "./Table";
-import useSortableData from "./TableSort";
-import search from "./TableSearch";
-import Pages from "./TablePages";
-import Dropdown from "../Form/Dropdown/Dropdowns";
-import rowsPerPage from "../Form/Dropdown/DropdownsData/dataPages";
+import PropTypes from "prop-types";
 
 import "./Table.css";
+import { normalizeText } from "../../../utils/utils";
 
-const MyTable = (props) => {
-  const employees = JSON.parse(localStorage.getItem("employees"));
+import Entries from "./Entries";
+import Search from "./TableSearch";
+import Table from "./Table";
+import TableFooter from "./TableFooter";
+import Pagination from "./Pagination";
 
-  //search
-  const [toSearch, setToSearch] = useState("");
+export default function MyTable({ labels, data }) {
+  const initialState = data;
   //pagination
   const [currentPage, setCurrentPage] = useState(1);
-
   const [postPerPage, setPostPerPage] = useState(10);
+  //sort and search
+  const [sortedData, setSortedData] = useState(initialState);
+  const [isSearching, setIsSearching] = useState(false);
+  const [sort, setSort] = useState({
+    column: "",
+    isDesc: true,
+  });
 
-  const indexOfLastPost = currentPage * postPerPage;
-  const indexOfFirstPost = indexOfLastPost - postPerPage;
-  const currentPost = employees.slice(indexOfFirstPost, indexOfLastPost);
-  const page = (pageNumber) => setCurrentPage(pageNumber);
-  //sort
-  const { items, requestSort, sortConfig } = useSortableData(currentPost);
-  const getClassNamesFor = (name) => {
-    if (!sortConfig) {
-      return;
+  const minRows = currentPage === 1 ? 1 : (currentPage - 1) * postPerPage + 1;
+
+  const maxRows =
+    currentPage * postPerPage < data.length
+      ? currentPage * postPerPage
+      : data.length;
+  const minFilteredShow =
+    currentPage === 1
+      ? sortedData.length > 0
+        ? 1
+        : 0
+      : (currentPage - 1) * postPerPage + 1;
+  const maxFilteredShow =
+    currentPage * postPerPage < sortedData.length
+      ? currentPage * postPerPage
+      : sortedData.length;
+
+  // Set howmany entries to display
+  const handleEntriesChange = (evt) => {
+    setPostPerPage(parseInt(evt.target.value));
+    setCurrentPage(1);
+  };
+
+  // set sort descending or ascending
+  const handleSort = (label) => {
+    if (sort.column === label) {
+      setSort({
+        ...sort,
+        isDesc: !sort.isDesc,
+      });
+    } else {
+      setSort({
+        column: label,
+        isDesc: false,
+      });
     }
-    return sortConfig.key === name ? sortConfig.direction : undefined;
+
+    const sorted = sorting(label);
+    setSortedData(sorted);
+  };
+
+  // Sort
+  const sorting = (label) => {
+    const sorted = sortedData.sort((a, b) => {
+      const labelA = normalizeText(a[label]);
+      const labelB = normalizeText(b[label]);
+
+      if (sort.isDesc) {
+        if (labelA < labelB) return -1;
+        if (labelA > labelB) return 1;
+      } else {
+        if (labelA < labelB) return 1;
+        if (labelA > labelB) return -1;
+      }
+
+      return 0;
+    });
+
+    return sorted;
   };
 
   return (
-    <div className="myTable">
-      <div className="table-utils-1">
-        <Dropdown
-          name="rowPerPage"
-          labelTitle="Show:"
-          labelTitle2="entries:"
-          value={postPerPage}
-          setDrop={setPostPerPage}
-          datas={rowsPerPage}
+    <div className="MyTable">
+      <div className="table-utils">
+        <Entries value={postPerPage} handleChange={handleEntriesChange} />
+        <Search
+          data={data}
+          handleDisplayedData={setSortedData}
+          handleIsSearching={setIsSearching}
         />
       </div>
-      <div className="table-utils-2">
-        <Input
-          type="search"
-          name="research"
-          labelTitle="Search:"
-          value={toSearch}
-          setInput={setToSearch}
-        />
-      </div>
-      <table>
-        <caption className="table-title">Current Employees</caption>
-
-        <colgroup>
-          <col className="table-col1" span="2"></col>
-          <col className="table-col2" span="2"></col>
-        </colgroup>
-        <thead>
-          <tr>
-            <th>
-              <button
-                type="button"
-                onClick={() => requestSort("firstName")}
-                className={getClassNamesFor("firstName")}
-              >
-                First Name
-              </button>
-            </th>
-            <th>
-              <button
-                type="button"
-                onClick={() => requestSort("lastName")}
-                className={getClassNamesFor("lastName")}
-              >
-                Last Name
-              </button>
-            </th>
-            <th>
-              <button
-                type="button"
-                onClick={() => requestSort("startDate")}
-                className={getClassNamesFor("startDate")}
-              >
-                Start Date
-              </button>
-            </th>
-            <th>
-              <button
-                type="button"
-                onClick={() => requestSort("department")}
-                className={getClassNamesFor("department")}
-              >
-                Department
-              </button>
-            </th>
-            <th>
-              <button
-                type="button"
-                onClick={() => requestSort("birthDate")}
-                className={getClassNamesFor("birthDate")}
-              >
-                Date of Birth
-              </button>
-            </th>
-            <th>
-              <button
-                type="button"
-                onClick={() => requestSort("street")}
-                className={getClassNamesFor("street")}
-              >
-                Street
-              </button>
-            </th>
-            <th>
-              <button
-                type="button"
-                onClick={() => requestSort("city")}
-                className={getClassNamesFor("city")}
-              >
-                City
-              </button>
-            </th>
-            <th>
-              <button
-                type="button"
-                onClick={() => requestSort("State")}
-                className={getClassNamesFor("State")}
-              >
-                State
-              </button>
-            </th>
-            <th>
-              <button
-                type="button"
-                onClick={() => requestSort("zipCode")}
-                className={getClassNamesFor("zipCode")}
-              >
-                Zip Code
-              </button>
-            </th>
-          </tr>
-        </thead>
-
-        <Table items={search(items, toSearch)} />
-      </table>
-
+      <Table
+        labels={labels}
+        data={sortedData}
+        minRows={minRows}
+        maxRows={maxRows}
+        handleSort={handleSort}
+        sort={sort}
+        sortedData={sortedData}
+      />
       <div className="table-footer">
-        <div>
-          {employees.length === 0 ? (
-            <p className="table-footer-p">No employee created yet!</p>
-          ) : (
-            [
-              currentPage === Math.ceil(employees.length / postPerPage) ? (
-                <p className="table-footer-p">
-                  Showing {indexOfFirstPost + 1} to {employees.length} of &nbsp;
-                  {employees.length} entries
-                </p>
-              ) : (
-                <p className="table-footer-p">
-                  Showing {indexOfFirstPost + 1} to {indexOfLastPost} of &nbsp;
-                  {employees.length} entries
-                </p>
-              ),
-            ]
-          )}
-        </div>
-        <div className="pagination">
-          {currentPage === 1 ? (
-            <div></div>
-          ) : (
-            <p
-              onClick={() => {
-                setCurrentPage(currentPage - 1);
-              }}
-            >
-              Previous
-            </p>
-          )}
-          <Pages
-            postPerPage={postPerPage}
-            totalOfPosts={employees.length}
-            page={page}
-          />
-          {currentPage === Math.ceil(employees.length / postPerPage) ||
-          employees.length === 0 ? (
-            <div></div>
-          ) : (
-            <p
-              onClick={() => {
-                setCurrentPage(currentPage + 1);
-              }}
-            >
-              Next
-            </p>
-          )}
-        </div>
+        <TableFooter
+          minRows={minRows}
+          maxRows={maxRows}
+          totalEntries={data.length}
+          isSearching={isSearching}
+          minFilteredShow={minFilteredShow}
+          maxFilteredShow={maxFilteredShow}
+          totalEntriesShow={sortedData.length}
+        />
+        <Pagination
+          totalEntries={sortedData.length}
+          displayedEntries={postPerPage}
+          handleClick={setCurrentPage}
+          currentPage={currentPage}
+        />
       </div>
     </div>
   );
-};
+}
 
-export default MyTable;
+MyTable.propTypes = {
+  labels: PropTypes.array.isRequired,
+  data: PropTypes.array.isRequired,
+};

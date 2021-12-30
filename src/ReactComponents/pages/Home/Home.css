@@ -23,3 +23,9 @@
   background-color: #444444;
   border-radius: 0.5rem;
 }
+
+@media (max-width: 760px) {
+  .form-header {
+    width: 100%;
+  }
+}
