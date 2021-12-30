@@ -22,6 +22,8 @@ Possible to modernise the style (but not essential)
 
 Code a React component, publish it on npm and use it in the project
 
+Compare old and new version with Lighthouse
+
 ## npm component made for this project
 
 - [My component repository ](https://github.com/LazezBZH/customizable-react-modal-lazez)
