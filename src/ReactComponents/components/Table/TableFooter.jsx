@@ -17,9 +17,15 @@ export default function TableFooter({
       ) : (
         [
           isSearching ? (
-            <span className="table-footer-p">{`Showing ${minFilteredShow} to ${maxFilteredShow} of ${totalEntriesShow} entries (filtered from ${totalEntries} total entries)`}</span>
+            <span
+              key="entries-filtered"
+              className="table-footer-p"
+            >{`Showing ${minFilteredShow} to ${maxFilteredShow} of ${totalEntriesShow} entries (filtered from ${totalEntries} total entries)`}</span>
           ) : (
-            <span className="table-footer-p">{`Showing ${minRows} to ${maxRows} of ${totalEntries} entries`}</span>
+            <span
+              key="entries"
+              className="table-footer-p"
+            >{`Showing ${minRows} to ${maxRows} of ${totalEntries} entries`}</span>
           ),
         ]
       )}

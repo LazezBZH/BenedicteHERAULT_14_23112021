@@ -1,11 +1,6 @@
-export default function Dropdown({
-  name,
-  value,
-  setDrop,
-  datas,
-  labelTitle,
-  labelTitle2,
-}) {
+import PropTypes from "prop-types";
+
+export default function Dropdown({ name, value, setDrop, datas, labelTitle }) {
   return (
     <label className="label" htmlFor={name}>
       <p>{labelTitle}</p>
@@ -21,7 +16,13 @@ export default function Dropdown({
           </option>
         ))}
       </select>
-      <p>{labelTitle2}</p>
     </label>
   );
 }
+Dropdown.propTypes = {
+  name: PropTypes.string.isRequired,
+  value: PropTypes.string,
+  setDrop: PropTypes.func,
+  datas: PropTypes.array,
+  labelTitle: PropTypes.string.isRequired,
+};

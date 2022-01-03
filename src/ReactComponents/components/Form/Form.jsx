@@ -108,7 +108,6 @@ const Form = () => {
           labelTitle="First Name:"
           value={firstNameToAdd}
           setInput={setFirstName}
-          regex="/\[([a-zA-Z]+)\]\[([a-zA-Z0-9.]+)\]\{(.+)\}/"
         />
         <Input
           type="text"

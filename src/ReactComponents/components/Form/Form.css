@@ -152,3 +152,8 @@ Form {
     height: 2.5rem;
   }
 }
+@media (max-width: 600px) {
+  .sc-gsDKAQ.kmLHwK {
+    width: 12rem;
+  }
+}

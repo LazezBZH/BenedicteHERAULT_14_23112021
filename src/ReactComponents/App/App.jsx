@@ -6,17 +6,17 @@ import "./App.css";
 
 const Home = lazy(() => import("../pages/Home/Home"));
 const Employees = lazy(() => import("../pages/Employees/Employees"));
+const Error = lazy(() => import("../pages/Error/Error"));
 
 function App() {
-  // const employees = JSON.parse(localStorage.getItem("employees"));
   return (
     <>
       <Suspense fallback={<div>Loading...</div>}>
         <Header />
-
         <Routes>
           <Route index element={<Home />} />
           <Route path="employees" element={<Employees />} />
+          <Route path="*" element={<Error />} />
         </Routes>
       </Suspense>
     </>

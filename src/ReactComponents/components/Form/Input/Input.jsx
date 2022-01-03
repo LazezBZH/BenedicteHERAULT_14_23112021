@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 export default function Input({
   type,
   name,
@@ -22,3 +24,15 @@ export default function Input({
     </label>
   );
 }
+
+Input.propTypes = {
+  type: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  labelTitle: PropTypes.string,
+  value: PropTypes.oneOfType([
+    PropTypes.string.isRequired,
+    PropTypes.number.isRequired,
+  ]),
+  setInput: PropTypes.func,
+  className: PropTypes.string,
+};

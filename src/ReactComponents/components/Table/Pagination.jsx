@@ -3,12 +3,12 @@ import PropTypes from "prop-types";
 
 import { generateID } from "../../../utils/utils";
 
-const Pagination = ({
+export default function Pagination({
   currentPage,
   totalEntries,
   displayedEntries,
   handleClick,
-}) => {
+}) {
   const nbPages = Math.ceil(totalEntries / displayedEntries);
   const nbPagesArray = new Array(nbPages).fill(0);
 
@@ -59,7 +59,7 @@ const Pagination = ({
       </button>
     </div>
   );
-};
+}
 
 Pagination.propTypes = {
   currentPage: PropTypes.number.isRequired,
@@ -67,5 +67,3 @@ Pagination.propTypes = {
   displayedEntries: PropTypes.number.isRequired,
   handleClick: PropTypes.func.isRequired,
 };
-
-export default Pagination;

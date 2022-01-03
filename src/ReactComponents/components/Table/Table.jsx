@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import { generateID } from "../../../utils/utils";
 
-const Table = ({
+export default function Table({
   labels,
   data,
   minRows,
@@ -11,7 +11,7 @@ const Table = ({
   handleSort,
   sort,
   sortedData,
-}) => {
+}) {
   const { column, isDesc } = sort;
 
   return (
@@ -87,7 +87,7 @@ const Table = ({
       </tbody>
     </table>
   );
-};
+}
 
 Table.propTypes = {
   labels: PropTypes.array.isRequired,
@@ -98,5 +98,3 @@ Table.propTypes = {
   maxRows: PropTypes.number.isRequired,
   handleSort: PropTypes.func.isRequired,
 };
-
-export default Table;
