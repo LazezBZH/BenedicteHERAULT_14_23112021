@@ -7,7 +7,7 @@ import MyTable from "../../components/Table/MyTable";
 import labels from "../../../data/labels";
 import "./Employees.css";
 
-export default function EmployeesBis() {
+export default function Employees() {
   const employees = JSON.parse(localStorage.getItem("employees"));
 
   return (
